@@ -15,25 +15,29 @@
 # Each entry will be used in setup matrix
 
 buildtest:
-  # armbian based images
-  - armbian/bananapim2zero
-  - armbian/orangepi3lts
-  - armbian/orangepi4lts
+  # armbian based images with 2 partitions
+  # - armbian/bananapim2zero
+  # - armbian/orangepi3lts
+  # - armbian/orangepi4lts
+  # armbian based images with 1 partitions
+  - armbian2/orangepi_plus2e
   # Orange Pi OS based images
-  - orangepi/orangepi_zero2
+  # - orangepi/orangepi_zero2
   # Raspberry Pi OS based images
-  - raspberry/rpi32
-  - raspberry/rpi64
+  # - raspberry/rpi32
+  # - raspberry/rpi64
 
 # This is used to setup release build chain.
 # Each entry will be used in setup matrix for releases
 
 release:
-  # armbian based images
-  - armbian/orangepi3lts
-  - armbian/orangepi4lts
+  # armbian based images with 2 partitions
+  # - armbian/orangepi3lts
+  # - armbian/orangepi4lts
+  # armbian based images with 1 partitions
+  - armbian2/orangepi_plus2e
   # Orange Pi OS based images
-  - orangepi/orangepi_zero2
+  # - orangepi/orangepi_zero2
   # Raspberry Pi OS based images
-  - raspberry/rpi32
-  - raspberry/rpi64
+  # - raspberry/rpi32
+  # - raspberry/rpi64

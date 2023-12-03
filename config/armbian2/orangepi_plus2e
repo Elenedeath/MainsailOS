@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Shebang for better file detection
+# shellcheck enable=require-variable-braces
+
+# Image source from armbian
+DOWNLOAD_URL_CHECKSUM="${DOWNLOAD_BASE_URL}/orangepiplus2e/archive/Armbian_23.11.1_Orangepiplus2e_bookworm_current_6.1.63.img.xz.sha"
+DOWNLOAD_URL_IMAGE="${DOWNLOAD_BASE_URL}/orangepiplus2e/archive/Armbian_23.11.1_Orangepiplus2e_bookworm_current_6.1.63.img.xz"
+
+# export Variables
+export BASE_ARCH
+export DOWNLOAD_URL_CHECKSUM
+export DOWNLOAD_URL_IMAGE
