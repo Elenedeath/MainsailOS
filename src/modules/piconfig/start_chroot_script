@@ -61,10 +61,21 @@ fi
 check_install_pkgs i2c-tools
 
 # Step 10: Disable bluetooth and related services
+function get_os_version {
+  grep -c "bookworm" /etc/os-release
+}
+
 echo_green "Disabling Bluetooth related services..."
-systemctl_if_exists disable hciuart.service
-systemctl_if_exists disable bluetooth.service
-systemctl_if_exists disable bluealsa.service
+if [ "$(get_os_version)" == "0" ]; then
+	echo_green "Disabling Bluetooth related services for other distro..."
+	systemctl_if_exists disable hciuart.service
+	systemctl_if_exists disable bluetooth.service
+	systemctl_if_exists disable bluealsa.service
+else
+	echo_green "Disabling Bluetooth related services for debian bookworm..."
+	systemctl_if_exists disable hciuart.service
+	systemctl_if_exists disable bluetooth.service
+fi
 
 # Step 11: Increase swapfile size
 if [[ -f "${PICONFIG_SWAP_CONF_FILE}" ]]; then
