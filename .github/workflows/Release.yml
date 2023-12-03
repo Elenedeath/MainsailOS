@@ -13,11 +13,11 @@ jobs:
     name: Push version number
     runs-on: ubuntu-latest
     steps:
-      - name: Clone develop repository
+      - name: Clone bookworm repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT }}
-          ref: "develop"
+          ref: "bookworm"
 
       - name: Get current version
         id: current-version
@@ -49,7 +49,7 @@ jobs:
       - uses: everlytic/branch-merge@1.1.5
         with:
           github_token: ${{ secrets.PAT }}
-          source_ref: "develop"
+          source_ref: "bookworm"
           target_branch: "master"
           commit_message_template: "[Automated] Merged {source_ref} into target {target_branch}"
 
@@ -146,14 +146,10 @@ jobs:
         id: move-image
         shell: bash
         run: |
-          WORKSPACE=$(echo ${{ github.workspace }})
-          sudo chown -R $USER:$USER $WORKSPACE/repository/src/workspace || true
-          sudo chmod 0775 -R $WORKSPACE/repository/src/workspace || true
-
           source repository/src/config
           base_name="${{ needs.release.outputs.date }}-${DIST_NAME}-${DIST_VERSION}"
           image="${base_name}-${{ steps.build.outputs.type }}-${{ steps.build.outputs.sbc }}"
-          mv repository/src/workspace/*.img $image.img
+          cp repository/src/workspace/*.img $image.img
 
           echo "base_name=${base_name}" >> $GITHUB_OUTPUT
           echo "image=${image}" >> $GITHUB_OUTPUT
@@ -347,7 +343,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: "develop"
+          ref: "bookworm"
           token: ${{ secrets.PAT }}
           fetch-depth: 0
 
